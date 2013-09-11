@@ -1,23 +1,24 @@
 post '/user/signin' do
   @user = User.find_by_email(params[:email])
-  unless @user.nil? # remove
-    if @user.password == params[:password] # => if @user && @user.password...
+    if @user && @user.password == params[:password]
       session[:user_id] = @user.id
       redirect '/'    
-    # else
-      # lines 11-12
+    else
+      @error = "Bad E-Mail/Password combination"
+      erb :index
     end
-  end # remove
-  @error = "Bad E-Mail/Password combination"
-  erb :index
 end  
 
 post '/user/new' do
-  p params
-  @new = User.new(params) # why is this an instance variable? also, be more specific, as "new" doesn't tell me anything about *what* this thing is.
-  log_in_user(params) if @new.save #where is the code for this method?
-  # what happens if @new doesn't save?
-  redirect '/home'
+  user = User.new(params)
+  if user.save
+    session[:user_id] = user.id 
+    redirect '/home'
+  else
+    @error = "Invalid account creation info"
+    erb :index
+    # redirect to('/')
+  end
 end
 
 
@@ -25,4 +26,21 @@ get '/logout' do
   session.clear
   redirect '/'
 end
+
+get '/' do
+  if current_user
+    @users_surveys = current_user.surveys
+    redirect '/home'
+  else
+    erb :index#, :layout => false #why is layout false?
+  end
+end
+
+# get '/signin' do
+#   erb :_signin, layout: false
+# end
+
+# get '/signup' do
+#   erb :_signup, layout: false
+# end
 

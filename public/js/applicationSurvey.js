@@ -1,7 +1,7 @@
 function Survey(){
-  this.choiceCounter = 0
-  this.questionCounter = 0
-  this.questionSelector = ''
+  this.choiceCounter = 0,
+  this.questionCounter = 0,
+  this.questionSelector = '',
   this.choiceSelector = ''
 }
 
@@ -69,7 +69,7 @@ Survey.prototype = {
     })
   },
   addChoice: function(){
-    var that = this
+    var that = this;
     $('#form_buttons').on('click', '#add_choice', function(e){
       e.preventDefault();
     //hide

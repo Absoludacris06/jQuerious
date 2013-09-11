@@ -6,9 +6,6 @@ helpers do
     end
   end
 
-  def logged_in?
-    !current_user.nil?
-  end
-  # ^ redundant, remove
+  
 
 end

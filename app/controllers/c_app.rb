@@ -10,7 +10,6 @@ get '/survey/:id/stats' do
 end
 
 get '/survey/new' do
-  #stubbed: (what is this for? -lla)
   erb :create_survey
 end
 
@@ -36,10 +35,10 @@ get '/survey/:id' do
   erb :view_survey
 end
 
-post '/survey/:id/question/create' do
-  # this needs to be built out
-  redirect '/home'
-end
+# post '/survey/:id/question/create' do
+#   # this needs to be built out
+#   redirect '/home'
+# end
 
 get '/form/question' do
   erb :"/survey/_create_qa", layout: false
@@ -48,14 +47,3 @@ end
 get '/form/choice' do
   erb :"/survey/_create_choice", layout: false
 end
-
-#chae erase this line and on (? -lla)
-
-get '/signin' do
-  erb :_signin, layout: false
-end
-
-get '/signup' do
-  erb :_signup, layout: false
-end
-# ^ move 54-60 to the sessions controller
