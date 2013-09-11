@@ -10,6 +10,7 @@ post '/user/signin' do
 end  
 
 post '/user/new' do
+
   user = User.new(params)
   if user.save
     session[:user_id] = user.id 

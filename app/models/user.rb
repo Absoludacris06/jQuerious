@@ -1,12 +1,11 @@
 class User < ActiveRecord::Base
-
-  has_many :surveys #alias to :created_surveys
-  # also look into the :dependent => :destroy option
+  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
+  validates :password_hash, presence: true
+  has_many :created_surveys, source: :surveys, foreign_key: :creator_id, dependent: :destroy
   has_many :answers
-  # define association to choices
-  # define associations to taken surveys and use the alias :taken_surveys (i.e., calling user.taken_surveys should return an array of all the surveys a user has taken)
-
-  # add validations
+  has_many :choices, through: :answers
+  has_many :taken_surveys, source: :surveys, through: :surveys_users
 
   include BCrypt
 

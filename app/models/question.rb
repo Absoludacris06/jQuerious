@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
-  has_many :choices
-  belongs_to :questions # a question belongs to questions?
+  validates :title, presence: :true, length: { minimum: 1 }
 
-  # add validations
+  has_many :choices
+  belongs_to :survey
 end
