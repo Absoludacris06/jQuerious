@@ -4,8 +4,9 @@ helpers do
 
   require 'pry'
   def parse_form(data)
-    data
-    binding.pry
+    p '^' * 200
+    p data
+    # binding.pry
 
     #data.each do |key, value|
       #case key

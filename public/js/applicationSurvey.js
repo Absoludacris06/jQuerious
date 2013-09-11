@@ -115,8 +115,8 @@ Survey.prototype = {
     // ANNE AND MATT - this is where the ajax call is not being received in Sinatra
     //$('#master_survey').on('click'...) will call ajax as expected
     
-    $('#master_survey').on('submit', function(e){
-      console.log('submitted')
+    $('#master_survey').on('click', function(e){
+      console.log('submitted');
       e.preventDefault();
       var $data = $(this).serialize();
       $.ajax({
@@ -128,7 +128,7 @@ Survey.prototype = {
       }).fail(function(jqXHR, textStatus){
         console.log(jqXHR + " " + textStatus);
       });
-    })
+    });
   }
 }
 

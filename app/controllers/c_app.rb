@@ -14,6 +14,8 @@ get '/survey/new' do
 end
 
 post '/survey/:id/submit' do
+  p '&' * 100
+  p params
   current_survey = params[:id]
   params.keep_if {|k,_| /\A\d+\z/ === k}
   params.each_value do |v|
