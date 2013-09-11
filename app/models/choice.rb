@@ -1,8 +1,10 @@
 class Choice < ActiveRecord::Base
-  has_many :answers
-  # define associations to users through answers
-  belongs_to :questions #should be singular
+  validates :option, presence: true, length: { minimum: 1 }
 
-  # add validations
+
+  has_many :answers
+  has_many :users, through: :answers
+  belongs_to :question
+
   
 end

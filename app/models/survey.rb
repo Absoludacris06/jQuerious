@@ -1,6 +1,7 @@
 class Survey < ActiveRecord::Base
-  has_many :questions
-  belongs_to :user #alias to :creator
+  validates :name, uniqueness: true
 
-  #add validations
+  has_many :questions
+  belongs_to :creator, class_name: "User"
+  # alias_attribute :user, :creator
 end
