@@ -30,7 +30,7 @@ end
 
 get '/' do
   if current_user
-    @users_surveys = current_user.surveys
+    @users_surveys = current_user.created_surveys
     redirect '/home'
   else
     erb :index#, :layout => false #why is layout false?

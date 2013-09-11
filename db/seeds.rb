@@ -8,15 +8,15 @@ jane = User.create(username: "Jane", email: "jane@dbc.com", password: "password"
 joe = User.create(username: "Joe", email: "joe@dbc.com", password: "password");
 # survey creation
 5.times do
-  Survey.create(user: test_user, name: Faker::Lorem.sentence)
+  Survey.create(creator: test_user, name: Faker::Lorem.sentence)
 end
 
 5.times do
-  Survey.create(user: jane, name: Faker::Lorem.sentence)
+  Survey.create(creator: jane, name: Faker::Lorem.sentence)
 end
 
 5.times do
-  Survey.create(user: joe, name: Faker::Lorem.sentence)
+  Survey.create(creator: joe, name: Faker::Lorem.sentence)
 end
 
 surveys = Survey.all

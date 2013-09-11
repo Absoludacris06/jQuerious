@@ -1,5 +1,5 @@
 get '/home' do
-  @user_surveys = current_user.surveys
+  @user_surveys = current_user.created_surveys
   @all_surveys = Survey.all
   erb :dashboard
 end
@@ -16,8 +16,8 @@ end
 post '/survey/:id/submit' do
   current_survey = params[:id]
   params.keep_if {|k,_| /\A\d+\z/ === k}
-  params.each_pair do |k,v|
-    Answer.create(user_id: current_user.id, question_id: k, choice_id: v)
+  params.each_value do |v|
+    Answer.create(user_id: current_user.id, choice_id: v)
   end
   redirect "/survey/#{current_survey}/stats"
 end
