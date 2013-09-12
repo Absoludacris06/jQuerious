@@ -2,7 +2,7 @@ function Modal(){
 }
 
 Modal.prototype = {
-  showModal: function(form, link){
+  showModal: function(form, link, prevent){
     console.log('in showModal function');
 
     $(form).easyModal({
@@ -11,8 +11,11 @@ Modal.prototype = {
     });
 
     $(link).on('click', function(e){
+      console.log(link)
       $(form).trigger('openModal');
-      e.preventDefault();
+      if (prevent) {
+        e.preventDefault();
+      }
     });
   }
 }
@@ -21,7 +24,7 @@ $(document).ready(function() {
  $('.container').hide().fadeIn(800);
 
   var modal = new Modal();
-  modal.showModal($('#signin'), $('#signin_link'));
-  modal.showModal($('#signup'), $('#signup_link'));
-  modal.showModal($('#form_success'), $('#submit'))
+  modal.showModal($('#signin'), $('#signin_link'), true);
+  modal.showModal($('#signup'), $('#signup_link'), true);
+  modal.showModal($('#form_success'), $('#submit'), false);
 })
