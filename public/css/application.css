@@ -5,10 +5,16 @@
 }
 
 #stats div{
-  width: 260px;
-  display: inline-block;
-  margin: 25px;
-  vertical-align: top
+  width: 70%;
+  margin: 25px 25px 25px 25px;
+  vertical-align: top;
+  border: 1px;
+}
+
+.q_title {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bolder;
 }
 
 .container {
@@ -40,8 +46,25 @@ body {
 .btn-toolbar {
   position: fixed;
   top: 20px;
-  right: 70px;
+  right: 36px;
 }
+
+.btn-toolbar a {
+  font-weight: bolder;
+}
+
+#home_button {
+  position: fixed;
+  top: 60px;
+  right: 36px;
+}
+
+#home_button a {
+  padding: 4.5px 17.5px;
+  font-weight: bolder;
+}
+
+
 
 #add_form_btns, #submit, #save_choice, #save_question {
   display: none;
@@ -92,6 +115,14 @@ body {
   padding: 20px;
   font-size: 20px;
 }*/
+#others_surveys a {
+  margin-right: 10px;
+}
+
+#others_surveys li {
+  margin-top: 5px;
+}
+
 
 #create_survey {
   position: relative;

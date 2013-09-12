@@ -5,23 +5,41 @@
 <% @current_survey.questions.each do |question| %>
 
   <div>
-    <div id="<%=question.title%>" style="width: 250px; height: 250px; display: inline-block; "></div>
-    <span class="q_title">Question: <%= question.title %> </span>
+    <span class="q_title" style="width: 100%"><%= question.title %> </span>
+    <br>
+    <div id="<%=question.title%>-d" style="width: 30%; height: 300px; margin: 0; display: inline-block; "></div>
+    <div id="<%=question.title%>-b" style="width: 60%; height: 300px; margin: 0; display: inline-block; "></div>
   </div>
-
-  <script type="text/javascript">
+   <script type="text/javascript">
     Morris.Donut({
-      element: '<%=question.title%>',
+      element: '<%=question.title%>-d',
       data: <%= get_question_breakdown(question) %>,
       colors :["#33B5E5","#99CC00","#FFBB33","#FF4444"]
-
     });
   </script>
-
+  <script type="text/javascript">
+    // console.log(<%= get_question_breakdown(question) %>);
+    Morris.Bar({
+      element: '<%= question.title %>-b',
+      data: <%= get_question_breakdown(question) %>,
+      xkey: 'label',
+      ykeys: ['value'],
+      labels: ['Votes'],
+      barColors: ["#33B5E5"],
+      hideHover: true
+    });
+  </script>
 <% end %>
 
 </div>
 
+<div class="btn-toolbar">
+  <a class="btn" href='/logout'><i class="ico n-user"></i>Log out</a>
+</div>
+
+<div class="btn-toolbar" id="home_button">
+  <a class="btn" href='/home'><i class="ico n-user"></i>Home</a>
+</div>
 
 
 <!-- 
