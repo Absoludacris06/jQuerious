@@ -1,4 +1,5 @@
 get '/home' do
+  @error = session[:error]
   @user_surveys = current_user.created_surveys
   @all_surveys = Survey.all
   erb :dashboard
@@ -21,6 +22,8 @@ post '/survey/:id/submit' do
   params.each_value do |v|
     Answer.create(user_id: current_user.id, choice_id: v)
   end
+  Survey.find(current_survey).takers << current_user
+
   redirect "/survey/#{current_survey}/stats"
 end
 
@@ -34,6 +37,10 @@ end
 
 get '/survey/:id' do
   @current_survey = Survey.find(params[:id])
+  if @current_survey.takers.include?(current_user)
+    session[:error] = "You've already taken this survey"
+    redirect '/home'
+  end
   erb :view_survey
 end
 

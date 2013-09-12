@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
   has_many :created_surveys, foreign_key: :creator_id, dependent: :destroy, class_name: "Survey"
   has_many :answers
   has_many :choices, through: :answers
-  has_many :taken_surveys, source: :surveys, through: :surveys_users
+  has_many :survey_users
+  has_many :taken_surveys, through: :survey_users, source: :survey
 
   include BCrypt
 
