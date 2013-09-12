@@ -116,7 +116,8 @@ Survey.prototype = {
     //$('#master_survey').on('click'...) will call ajax as expected
     
     $('#master_survey').on('submit', function(e){
-      console.log('submitted')
+      console.log(e.target);
+      console.log('submitted');
       e.preventDefault();
       var $data = $(this).serialize();
       $.ajax({
@@ -124,11 +125,11 @@ Survey.prototype = {
         type: this.method,
         data: $data
       }).done(function(response){
-        console.log('Ajax Successful');
+        console.log("SAVED!");
       }).fail(function(jqXHR, textStatus){
         console.log(jqXHR + " " + textStatus);
       });
-    })
+    });
   }
 }
 

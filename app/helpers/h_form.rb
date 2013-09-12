@@ -4,8 +4,21 @@ helpers do
 
   require 'pry'
   def parse_form(data)
-    data
-    binding.pry
+    survey = Survey.create(creator_id: current_user.id, name: data["survey"]["name"])
+    data["question"].each do |q_key, q_value|
+      question = Question.create(survey_id: survey.id, title: q_value["title"])
+      data["choice"].each_value do |choice|
+        if choice.fetch('question') == q_key
+          Choice.create(question_id: question.id, option: choice['option'])
+        end
+      end
+    end
+  end
+
+
+
+
+    # binding.pry
 
     #data.each do |key, value|
       #case key
@@ -23,6 +36,6 @@ helpers do
         # end
       #end
     #end
-  end
+
 
 end
